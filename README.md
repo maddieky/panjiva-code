@@ -2,6 +2,16 @@
 
 Code used to create the tables and figures in our FEDS note: "Bill of Lading Data in International Trade Research with an Application to the Covid-19 Pandemic" (Flaaen et al.).
 
+# database
+
+All files used to build the database use python and require large computational servers to process the large data files. In our project, we used a server with 24 cores, 200GB RAM, and over 3 TB of disk space. Our version of the Panjiva Impala database is served on a Hadoop cluster. Your usage may vary depending on the resources available.
+
+* Downloading data from FTP server:
+    * Coordinator script with Ray local parallelization: data_ftppull_coordinator_ray.py
+    * Worker script: data_ftppull_worker.py
+* Processing data and uploading to Hadoop:
+    * Script with Dask local parallelization: process_and_load_dask.py
+
 # Data Manipulation
 
 All files used to query/manipulate data from our Panjiva Hadoop database are located in code_for_paper/data_manipulation or code_for_paper/stata:
