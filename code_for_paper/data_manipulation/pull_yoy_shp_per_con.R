@@ -11,12 +11,11 @@ import_us <- dplyr::tbl(conn_panjiva, 'panjivausimport')
 data_shp_per_con <- import_us %>%
   filter(!is.na(shppanjivaid)) %>%
   filter(!is.na(conpanjivaid)) %>%
-  filter(concountry == "United States" | concountry == "None") %>% 
+  filter(concountry == "United States" | is.null(concountry)) %>% 
   dplyr::select(shppanjivaid, conpanjivaid, arrivaldate) %>%
   mutate(year = (sql("cast(year(arrivaldate) as string)")),
          month = (sql("cast(month(arrivaldate) as string)"))) %>%
   mutate(date = paste0(year, "-", month, "-01")) %>% 
-  group_by(date) %>%
   distinct(date, shppanjivaid, conpanjivaid) %>% 
   group_by(date, conpanjivaid) %>% 
   summarize(num_of_ship = n()) %>% 
@@ -50,4 +49,3 @@ data_shp_per_con_chart <- rbind(data_shp_per_con_2020, data_shp_per_con_2021) %>
 
 setwd('../../data_for_paper')
 write.csv(data_shp_per_con_chart, 'data_shp_per_con.csv')
-

@@ -56,7 +56,7 @@ fig_export <- fig_export[25:42,]
 
 # Import data
 import_2018 = import_us %>%
-  filter(concountry == "United States" | concountry == "None") %>% 
+  filter(concountry == "United States" | is.null(concountry)) %>% 
   mutate(year = (sql("cast(year(arrivaldate) as string)"))) %>%
   filter(year == "2018") %>%
   filter(!is.na(conpanjivaid) & !is.na(shpmtorigin) & !is.na(volumeteu)) %>%

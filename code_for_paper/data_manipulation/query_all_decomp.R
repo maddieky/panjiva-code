@@ -9,7 +9,7 @@ source("../functions/functions_panjiva.R")
 import_us <- dplyr::tbl(conn_panjiva, 'panjivausimport')
 
 data_all <- import_us %>% 
-  filter(concountry == "United States" | concountry == "None") %>% 
+  filter(concountry == "United States" | is.null(concountry)) %>% 
   mutate(year = (sql("cast(year(arrivaldate) as string)"))) %>%
   mutate(month = (sql("cast(month(arrivaldate) as string)"))) %>%
   mutate(date = paste0(year, "-", month, "-01")) %>%

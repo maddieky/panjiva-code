@@ -17,7 +17,7 @@ for (i in 2019:2019) {
   y = toString(i -1)
   
   data_record <- import_us %>% 
-    filter(concountry == "United States" | concountry == "None") %>% 
+    filter(concountry == "United States" | is.null(concountry)) %>%  
     select(arrivaldate, panjivarecordid, shppanjivaid, conpanjivaid, volumeteu) %>%
     mutate(year = (sql("cast(year(arrivaldate) as string)"))) %>%
     mutate(month = (sql("cast(month(arrivaldate) as string)"))) %>%
@@ -50,7 +50,6 @@ for (i in 2019:2019) {
   # bind this year of data to overall dataset
   df <- rbind(df, data_dropped) %>%
     mutate(count = as.double(count)) 
-  
 }
 
 df_grouped <- df %>%

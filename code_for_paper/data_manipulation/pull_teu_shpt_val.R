@@ -13,7 +13,7 @@ import_us <- dplyr::tbl(conn_panjiva, 'panjivausimport')
 imp_detl <- dplyr::tbl(conn_hstrade, 'imp_detl')
 
 teu_agg_mon = import_us %>% 
-  filter(concountry == "United States" | concountry == "None") %>% 
+  filter(concountry == "United States" | is.null(concountry)) %>% 
   month_var() %>% 
   group_by(date) %>% 
   teu_data_mon() %>%
@@ -22,7 +22,7 @@ teu_agg_mon = import_us %>%
   arrange(date)
 
 shpt_agg_mon = import_us %>%
-  filter(concountry == "United States" | concountry == "None") %>% 
+  filter(concountry == "United States" | is.null(concountry)) %>% 
   month_var() %>%
   group_by(date) %>% 
   shpt_data_mon() %>%
@@ -72,4 +72,3 @@ data_mon <- left_join(left_join(left_join(teu_agg_mon, shpt_agg_mon, by="date"),
 
 setwd('../../data_for_paper')
 write.csv(data_mon, 'data_teu_shpt_val.csv')
-

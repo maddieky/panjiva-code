@@ -11,7 +11,7 @@ import_us <- dplyr::tbl(conn_panjiva, 'panjivausimport')
 
 data_consignees_teu <- import_us %>%
   filter(!is.na(shppanjivaid) & !is.na(conpanjivaid) & !is.na(volumeteu)) %>%
-  filter(concountry == "United States" | concountry == "None") %>%
+  filter(concountry == "United States" | is.null(concountry)) %>%
   select(shppanjivaid, conpanjivaid, arrivaldate, volumeteu) %>%
   mutate(year = (sql("cast(year(arrivaldate) as string)"))) %>%
   mutate(date = paste0(year, "-01-01")) %>% 
@@ -29,7 +29,7 @@ data_consignees_teu <- import_us %>%
 
 data_shippers_teu <- import_us %>%
   filter(!is.na(shppanjivaid) & !is.na(conpanjivaid) & !is.na(volumeteu)) %>%
-  filter(concountry == "United States" | concountry == "None") %>% 
+  filter(concountry == "United States" | is.null(concountry)) %>% 
   select(shppanjivaid, conpanjivaid, arrivaldate, volumeteu) %>%
   mutate(year = (sql("cast(year(arrivaldate) as string)"))) %>%
   mutate(date = paste0(year, "-01-01")) %>% 

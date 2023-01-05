@@ -14,7 +14,7 @@ data_record_mon_ex <- import_us %>%
   mutate(quarter = (sql("cast(quarter(arrivaldate) as string)"))) %>%
   mutate(date = paste0(year, "-", month, "-01")) %>%
   filter(year == "2021" | year == "2020" | year == "2019" | year == "2018" | year == "2017" | year == "2016") %>%
-  filter(concountry == "United States" | concountry == "None")
+  filter(concountry == "United States" | is.null(concountry))
 
 import_us_hs <- dplyr::tbl(conn_panjiva, 'panjivausimphscode')
 
@@ -34,4 +34,3 @@ data_furniture_mon <- inner_join(data_hs, data_record_mon_ex, by = "panjivarecor
 
 setwd('../../intermediate_dta_files')
 write.csv(data_furniture_mon, "furniture_imports_for_decomp.csv")
-

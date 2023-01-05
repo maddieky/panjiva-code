@@ -29,5 +29,3 @@ monthly_import_data <- import_dta %>%
 
 setwd('../../data_for_paper')
 write.csv(monthly_import_data, 'data_mode_of_transport_import.csv')
-
-

@@ -10,7 +10,7 @@ import_us <- dplyr::tbl(conn_panjiva, 'panjivausimport')
 
 data_us_import <- import_us %>%
   filter(shpmtorigin == "India") %>%
-  filter(concountry == "United States" | concountry == "None") %>%
+  filter(concountry == "United States" | is.null(concountry)) %>%
   mutate(year = (sql("cast(year(arrivaldate) as string)")),
          month = (sql("cast(month(arrivaldate) as string)")),
          day = (sql("cast(day(arrivaldate) as string)"))) %>%

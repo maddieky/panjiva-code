@@ -8,7 +8,7 @@ source("../functions/functions_panjiva.R")
 import_us <- dplyr::tbl(conn_panjiva, 'panjivausimport')
 
 data <- import_us %>%
-  filter(concountry == "United States" | concountry == "None") %>%
+  filter(concountry == "United States" | is.null(concountry)) %>%
   select(arrivaldate, portofunlading, portoflading, vessel, vesselimo, vesselvoyageid, volumeteu, weightkg) %>%
   mutate(year = (sql("cast(year(arrivaldate) as string)")),
          month = (sql("cast(month(arrivaldate) as string)")),
@@ -24,6 +24,3 @@ data <- import_us %>%
 
 setwd('../../intermediate_dta_files')
 write.csv(data, "port_analysis_data_daily_from_2012.csv")
-
-
-  

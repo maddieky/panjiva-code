@@ -13,7 +13,7 @@ export_dta <- dplyr::tbl(conn_hstrade, 'exp_detl')
 #   Total imports: gen_val_mo (imp), all_val_mo (exp) 
 #   Air: air_val_mo
 #   Vessel: ves_val_mo
-#   Other: gen_val_mo - ves_val_mo - air_val_yr
+#   Other: gen_val_mo - ves_val_mo - air_val_mo
 
 # You can make sure it matches up to Census data online (see Exhibit 4a): 
 #  https://www.census.gov/foreign-trade/Press-Release/ft920_index.html 
@@ -47,4 +47,3 @@ data_combined <- rbind(import_data, export_data)
 
 setwd('../../data_for_paper')
 write.csv(data_combined, 'data_transport_2019.csv')
-
