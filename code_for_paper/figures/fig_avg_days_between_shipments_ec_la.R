@@ -21,7 +21,7 @@ la_shipments <- ggplot() +
   labs(x = "",
        y = "",
        color = "", 
-       title = "(a) Los Angeles / Long Beach", 
+       title = "", 
        subtitle = "Number of days") +
   themePanjiva +
   scale_y_continuous(limits = c(40, 60), breaks = seq(36, 60, by = 4)) +
@@ -39,7 +39,7 @@ ec_shipments <- ggplot() +
   labs(x = "",
        y = "",
        color = "Legend",
-       title =  "(b) Major East Coast Ports",
+       title =  "",
        subtitle = "Number of days") +
   themePanjiva +
   scale_y_continuous(limits = c(56, 80), breaks = seq(56, 80, by = 4)) +
@@ -56,6 +56,3 @@ ggsave("avg_days_port_visit_EC.pdf", plot = ec_shipments, width = 3.5, height = 
 
 combined <- grid.arrange(la_shipments, ec_shipments, nrow = 1)
 ggsave("fig_combined_LA_EC.pdf", plot = combined, width = 5.5, height = 3)
-
-
-

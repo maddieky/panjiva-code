@@ -38,5 +38,3 @@ allimports <- ggplot() +
 
 # Export chart
 ggsave("../../charts_for_paper/fig_all_decomp.pdf", plot = allimports, width = 5, height = 3)
-
-

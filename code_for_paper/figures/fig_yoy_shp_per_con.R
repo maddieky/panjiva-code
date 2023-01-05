@@ -14,7 +14,7 @@ fig_shp_per_con <- ggplot(data_shp_per_con_chart, aes(x=date)) +
   themePanjiva +
   scalesPanjiva +
   scale_x_date(breaks = seq(as.Date("2020-01-01"), as.Date("2021-09-01"), by = "6 months"), date_labels = "%b. %Y") +
-  scale_y_continuous(limits = c (-50, 30), breaks = seq(-40, 30, by = 20)) +
+  scale_y_continuous(limits = c (-20, 10), breaks = seq(-20, 10, by = 10)) +
   labs(x = "",
        y = "",
        color = "Legend", 

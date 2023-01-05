@@ -38,4 +38,3 @@ teu_delay <- ggplot(to_plot, aes(x= date_cutoff, y = avg_delay_percent, group = 
 # Export chart
 setwd('../../charts_for_paper')
 ggsave("fig_teu_delay.pdf", plot = teu_delay, width = 6, height = 3)
-

@@ -38,6 +38,3 @@ furn <- ggplot() +
 
 # Export chart
 ggsave("../../charts_for_paper/fig_furn_decomp.pdf", plot = furn, width = 5, height = 3)
-
-
-

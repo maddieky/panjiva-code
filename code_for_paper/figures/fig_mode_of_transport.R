@@ -33,4 +33,3 @@ fig_monthly_import_sa <- ggplot(monthly_import_data, aes(x=date)) +
 # Export charts
 setwd('../../charts_for_paper')
 ggsave("fig_transport_imp_monthly_sa.pdf", plot = fig_monthly_import_sa, width = 5, height = 3)
-
